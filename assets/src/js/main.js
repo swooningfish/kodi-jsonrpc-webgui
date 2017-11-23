@@ -4,7 +4,6 @@ var kodihost = '192.168.0.2';
 var kodiport = '8080';
 
 
-
 $( document ).ready(function() {
 //$('.js-json').on('click', function () {
     // http://kodi.wiki/view/JSON-RPC_API/v6#VideoLibrary.GetRecentlyAddedMovies
@@ -41,7 +40,7 @@ $( document ).ready(function() {
                 "id": "libMovies"
             })
         },
-        async: false,
+        async: true,
         beforeSend: function (xhr) {
             if (xhr && xhr.overrideMimeType) {
                 xhr.overrideMimeType('application/json;charset=utf-8');
