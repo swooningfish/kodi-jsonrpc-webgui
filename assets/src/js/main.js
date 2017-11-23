@@ -1,9 +1,16 @@
+// JavaScript Globals
+var kodiprotocol = 'http';
+var kodihost = '192.168.0.2';
+var kodiport = '8080';
+
+
+
 $( document ).ready(function() {
 //$('.js-json').on('click', function () {
     // http://kodi.wiki/view/JSON-RPC_API/v6#VideoLibrary.GetRecentlyAddedMovies
     $.ajax({
         type: 'GET',
-        url: 'http://192.168.0.2:8080/jsonrpc',
+        url: kodiprotocol+'://'+kodihost+':'+kodiport+'/jsonrpc',
         data: {
             "request": JSON.stringify({
                 "jsonrpc": "2.0",
@@ -62,11 +69,12 @@ function renderMovieCard(movie) {
     // Work out the image placeholder
     if (Object.keys(movie.art).length) {
         var str = movie.art.poster;
-        //console.log(str);
+        // Get the image url removing the image:// (at the start of the string) and / (at the end of the string)
         var image = decodeURIComponent(str.substring(8, str.length - 1));
     } else {
-        var image = 'http://192.168.0.2:8080/images/thumbnail_default.png';
+        var image = kodiprotocol+'://'+kodihost+':'+kodiport+'/images/thumbnail_default.png';
     }
+    var image = kodiprotocol+'://'+kodihost+':'+kodiport+'/images/thumbnail_default.png';
 
     //console.log(movie);
     htmlResults += ' <div class="col-md-3"><div class="card">';
